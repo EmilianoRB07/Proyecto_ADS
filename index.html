@@ -1,3 +1,219 @@
-<script>
-window.location.href = "ProyectoADS/views/auth/login.html";
-</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HospitalNet - Bienvenido</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
+      min-height:100vh;
+      color:white;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header{
+      padding:25px 50px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:bold;
+      color:#38bdf8;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:25px;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#38bdf8;
+    }
+
+    .hero{
+      flex:1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:40px;
+    }
+
+    .hero-content{
+      max-width:700px;
+      text-align:center;
+      animation: fadeIn 1s ease;
+    }
+
+    .hero-content h1{
+      font-size:60px;
+      margin-bottom:20px;
+      line-height:1.1;
+    }
+
+    .hero-content span{
+      color:#38bdf8;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      color:#cbd5e1;
+      margin-bottom:40px;
+      line-height:1.6;
+    }
+
+    .buttons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 35px;
+      border:none;
+      border-radius:12px;
+      font-size:17px;
+      cursor:pointer;
+      transition:0.3s;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    .btn-primary{
+      background:#38bdf8;
+      color:white;
+    }
+
+    .btn-primary:hover{
+      background:#0ea5e9;
+      transform:translateY(-3px);
+    }
+
+    .btn-secondary{
+      background:transparent;
+      border:2px solid #38bdf8;
+      color:#38bdf8;
+    }
+
+    .btn-secondary:hover{
+      background:#38bdf8;
+      color:white;
+      transform:translateY(-3px);
+    }
+
+    .card{
+      margin-top:50px;
+      background:rgba(255,255,255,0.05);
+      padding:30px;
+      border-radius:20px;
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 0 30px rgba(0,0,0,0.3);
+    }
+
+    footer{
+      text-align:center;
+      padding:20px;
+      color:#94a3b8;
+      font-size:14px;
+      border-top:1px solid rgba(255,255,255,0.1);
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:768px){
+      .hero-content h1{
+        font-size:40px;
+      }
+
+      .hero-content p{
+        font-size:17px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">HospitalNet</div>
+
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Sistema</a>
+      <a href="#">ADS</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>
+        Bienvenido a <span>HospitalNet</span>
+      </h1>
+
+      <p>
+        Plataforma digital enfocada en la gestión hospitalaria,
+        diseñada para optimizar procesos, mejorar la administración
+        y centralizar la información médica de forma eficiente.
+      </p>
+
+      <div class="buttons">
+        <a href="ProyectoADS/views/auth/login.html" class="btn btn-primary">
+          Iniciar Sesión
+        </a>
+
+        <a href="ProyectoADS/views/auth/login.html" class="btn btn-secondary">
+          Acceder al Sistema
+        </a>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-bottom:15px;">
+          Proyecto Académico
+        </h2>
+
+        <p>
+          Este sistema fue desarrollado como parte del proyecto final
+          de la materia de Análisis y Diseño de Sistemas,
+          aplicando conceptos de arquitectura web,
+          experiencia de usuario y organización modular.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    Proyecto desarrollado para la materia de Análisis y Diseño de Sistemas © 2026
+  </footer>
+
+</body>
+</html>
