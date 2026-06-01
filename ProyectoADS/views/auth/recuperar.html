@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HospitalNet - Recuperar Contraseña</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card p-4 shadow-sm w-100" style="max-width: 420px; border-radius: 12px;">
+        <div class="text-center mb-3" style="font-size: 2.5rem;">🔑</div>
+        <h4 class="text-center fw-bold mb-1">Recuperar Contraseña</h4>
+        <p class="text-muted text-center small mb-4" id="flow-desc">Ingrese su correo institucional para verificar su cuenta.</p>
+        
+        <div id="alert-container"></div>
+
+        <form id="form-verificar-correo">
+            <div class="mb-3">
+                <label class="form-label small fw-semibold">Correo Electrónico</label>
+                <input type="email" id="recovery-email" class="form-control" placeholder="admin@hospitalnet.com" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold mb-2">Verificar Cuenta</button>
+            <div class="text-center">
+                <a href="login.html" class="small text-decoration-none">Regresar al Login</a>
+            </div>
+        </form>
+
+        <form id="form-cambiar-password" class="d-none">
+            <div class="mb-3">
+                <label class="form-label small fw-semibold">Nueva Contraseña</label>
+                <input type="password" id="new-password" class="form-control" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn bg-success text-white w-100 py-2 fw-semibold">Actualizar Contraseña</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const formVerificar = document.getElementById("form-verificar-correo");
+    const formCambiar = document.getElementById("form-cambiar-password");
+    const emailInput = document.getElementById("recovery-email");
+    const passwordInput = document.getElementById("new-password");
+    const alertContainer = document.getElementById("alert-container");
+    const flowDesc = document.getElementById("flow-desc");
+    
+    let emailVerificado = "";
+
+    // Evento para el Paso 1
+    formVerificar.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+
+        try {
+            const response = await fetch("/ProyectoADS/public/index.php?url=auth/verificarCorreo", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            });
+            const res = await response.json();
+
+            if (res.status === "success") {
+                emailVerificado = email; // Guardamos el correo validado
+                alertContainer.innerHTML = `<div class="alert alert-success small py-2">${res.message}</div>`;
+                
+                // Transición al paso 2
+                formVerificar.classList.add("d-none");
+                formCambiar.classList.remove("d-none");
+                flowDesc.textContent = "Establezca su nueva contraseña de acceso.";
+            } else {
+                alertContainer.innerHTML = `<div class="alert alert-danger small py-2">${res.message}</div>`;
+            }
+        } catch (err) {
+            console.error(err);
+            alertContainer.innerHTML = `<div class="alert alert-danger small py-2">Error de conexión.</div>`;
+        }
+    });
+
+    // Evento para el Paso 2
+    formCambiar.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const password = passwordInput.value;
+
+        try {
+            const response = await fetch("/ProyectoADS/public/index.php?url=auth/actualizarPassword", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: emailVerificado, password: password })
+            });
+            const res = await response.json();
+
+            if (res.status === "success") {
+                alertContainer.innerHTML = `<div class="alert alert-success small py-2">${res.message}</div>`;
+                formCambiar.reset();
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 2000);
+            } else {
+                alertContainer.innerHTML = `<div class="alert alert-danger small py-2">${res.message}</div>`;
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+});
+</script>
+</body>
+</html>

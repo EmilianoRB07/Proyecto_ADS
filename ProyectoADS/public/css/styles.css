@@ -1,0 +1,59 @@
+/* public/css/styles.css */
+
+:root {
+    --hospital-blue: #0d6efd;
+    --hospital-dark: #1e293b;
+    --hospital-light: #f8fafc;
+    --hospital-success: #198754;
+    --hospital-border: #e2e8f0;
+}
+
+body {
+    background-color: var(--hospital-light);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--hospital-dark);
+}
+
+/* Contenedor del Login Centrado */
+.login-container {
+    max-width: 420px;
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(30, 41, 59, 0.05);
+    border: 1px solid var(--hospital-border);
+}
+
+.hospital-logo-placeholder {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(13, 110, 253, 0.1);
+    color: var(--hospital-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+}
+
+/* Tarjetas Clínicas del Panel de Control */
+.card-clinical {
+    border: 1px solid var(--hospital-border);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+    background: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.card-clinical .card-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--hospital-border);
+    font-weight: 600;
+    color: var(--hospital-dark);
+    padding: 1rem 1.25rem;
+}
+
+/* Estilos extra para textos pequeños */
+.extra-small {
+    font-size: 0.75rem;
+}
